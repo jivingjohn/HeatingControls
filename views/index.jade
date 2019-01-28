@@ -1,0 +1,32 @@
+extends layout
+
+block content      
+  div.row
+    div.col.text-center
+      h1= title 
+      p #{pageMessage}
+  div.row
+    div.col-lg-2
+    div.col.btn-group
+      button#btn-refresh.btn-default.btn-lg(type='button') Refresh Graph
+  div.row
+    div.col-lg-2
+    div#Graph.col
+      img.js-widget-image(src='data:image/png;base64,'+graph)
+  div.row
+    div.col-lg-2
+    div.col.btn-group
+      form(method='post' action='/On')
+        button.btn-success.btn-lg(type='submit') Turn heating on  
+      form(method='post' action='/Off')
+        button.btn-primary.btn-lg(type='submit') Turn heating off
+  br
+    
+  div.row
+    div.col-lg-2
+    div.col
+      form(method='post' action='/Temperature')
+        div.form-group
+          label(for='Temperature') Temperature:
+          input#Temperature.form-control(type='number' name='Temperature' min=15 max=25 value=15)
+        button.btn-warning.btn-lg(type='submit') Set temperature
